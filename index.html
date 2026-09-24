@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Elena Xu — Mechanical Engineering Portfolio</title>
+<meta name="description" content="Portfolio of Elena Xu, Mechanical Engineering student at Purdue University. Projects in mechatronics, CAD, data analysis, and vehicle dynamics." />
+<style>
+  :root {
+    --ink: #1a2332;
+    --ink-soft: #3d4a5f;
+    --muted: #6b7688;
+    --line: #e3e8ef;
+    --bg: #fafbfc;
+    --card: #ffffff;
+    --accent: #0f5fd0;
+    --accent-soft: #e8f0fd;
+    --amber: #c77414;
+    --radius: 14px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Inter, Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    background-image:
+      linear-gradient(rgba(15,95,208,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(15,95,208,0.035) 1px, transparent 1px);
+    background-size: 28px 28px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+
+  /* Nav */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(250,251,252,0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+  .brand { font-weight: 700; font-size: 1.05rem; color: var(--ink); letter-spacing: -0.01em; }
+  .brand span { color: var(--accent); }
+  .links { display: flex; gap: 22px; font-size: 0.92rem; font-weight: 500; }
+  .links a { color: var(--ink-soft); }
+  .links a:hover { color: var(--accent); text-decoration: none; }
+
+  /* Hero */
+  header.hero { padding: 84px 0 56px; }
+  .kicker {
+    display: inline-block; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--accent);
+    background: var(--accent-soft); border: 1px solid #cfdefa;
+    padding: 6px 14px; border-radius: 999px; margin-bottom: 20px;
+  }
+  h1 { font-size: clamp(2.4rem, 6vw, 3.6rem); letter-spacing: -0.03em; line-height: 1.08; margin-bottom: 14px; }
+  .subtitle { font-size: 1.2rem; color: var(--ink-soft); max-width: 620px; margin-bottom: 8px; }
+  .tagline { color: var(--muted); max-width: 620px; margin-bottom: 28px; }
+  .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; padding: 11px 22px; border-radius: 10px; font-weight: 600; font-size: 0.95rem;
+    border: 1px solid transparent; transition: transform .12s ease, box-shadow .12s ease;
+  }
+  .btn:hover { text-decoration: none; transform: translateY(-1px); }
+  .btn.primary { background: var(--accent); color: #fff; box-shadow: 0 6px 18px rgba(15,95,208,0.25); }
+  .btn.ghost { background: var(--card); color: var(--ink); border-color: var(--line); }
+
+  /* Sections */
+  section { padding: 44px 0; }
+  .sec-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 24px; }
+  .sec-num {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.85rem; font-weight: 700; color: var(--amber);
+  }
+  h2 { font-size: 1.55rem; letter-spacing: -0.02em; }
+  .sec-head::after { content: ""; flex: 1; height: 1px; background: var(--line); align-self: center; }
+
+  /* Project cards */
+  .project {
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 26px 28px; margin-bottom: 18px;
+    box-shadow: 0 1px 3px rgba(26,35,50,0.05);
+    transition: box-shadow .15s ease, transform .15s ease;
+  }
+  .project:hover { box-shadow: 0 10px 30px rgba(26,35,50,0.08); transform: translateY(-2px); }
+  .project .meta {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap;
+    margin-bottom: 6px;
+  }
+  .project h3 { font-size: 1.12rem; letter-spacing: -0.01em; }
+  .date {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.78rem; color: var(--muted); white-space: nowrap;
+  }
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin: 10px 0 12px; }
+  .tag {
+    font-size: 0.76rem; font-weight: 600; color: var(--accent);
+    background: var(--accent-soft); border-radius: 6px; padding: 3px 10px;
+  }
+  .project ul { margin-left: 18px; color: var(--ink-soft); font-size: 0.96rem; }
+  .project li { margin-bottom: 6px; }
+  .project li::marker { color: var(--accent); }
+
+  /* Experience / education rows */
+  .row-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 22px 26px; margin-bottom: 14px;
+  }
+  .row-card .meta { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 4px; }
+  .row-card h3 { font-size: 1.05rem; }
+  .row-card .org { color: var(--accent); font-weight: 600; font-size: 0.95rem; }
+  .row-card p, .row-card ul { color: var(--ink-soft); font-size: 0.95rem; }
+  .row-card ul { margin-left: 18px; margin-top: 8px; }
+  .row-card li { margin-bottom: 4px; }
+
+  /* Skills */
+  .skill-groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+  .skill-group { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 22px; }
+  .skill-group h4 {
+    font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 12px;
+  }
+  .skill-group .tags { margin: 0; }
+  .tag.plain { color: var(--ink-soft); background: #eef1f6; }
+
+  /* Contact */
+  .contact-card {
+    background: var(--ink); color: #eef1f6; border-radius: var(--radius);
+    padding: 36px 32px; text-align: center;
+  }
+  .contact-card h2 { color: #fff; margin-bottom: 8px; }
+  .contact-card p { color: #a9b4c6; margin-bottom: 22px; }
+  .contact-card .btn.primary { box-shadow: 0 6px 18px rgba(15,95,208,0.45); }
+  .contact-card .btn.ghost { background: transparent; color: #fff; border-color: #3d4a5f; }
+
+  footer { padding: 36px 0 48px; text-align: center; color: var(--muted); font-size: 0.85rem; }
+  footer .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+
+  @media (max-width: 600px) {
+    .links { display: none; }
+    header.hero { padding: 56px 0 40px; }
+    .project, .row-card { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top" style="text-decoration:none">Elena<span>&nbsp;Xu</span></a>
+    <div class="links">
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap" id="top">
+  <header class="hero">
+    <div class="kicker">Mechanical Engineering · Purdue '29</div>
+    <h1>Elena Xu</h1>
+    <p class="subtitle">I design, build, and test hardware — from closed-loop Arduino control systems to parametric CAD assemblies and data-driven analysis tools.</p>
+    <p class="tagline">Sophomore in Mechanical Engineering at Purdue University (GPA 3.88/4.00), looking for a Summer 2027 internship where I can do hands-on mechanical design, prototyping, and testing.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="#projects">View projects</a>
+      <a class="btn ghost" href="https://www.linkedin.com/in/elena-xu-a91555383" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn ghost" href="#contact">Get in touch</a>
+    </div>
+  </header>
+
+  <section id="projects">
+    <div class="sec-head"><span class="sec-num">01</span><h2>Projects</h2></div>
+
+    <div class="project">
+      <div class="meta"><h3>Environmental Control System</h3><span class="date">Jun – Jul 2026</span></div>
+      <div class="tags"><span class="tag">Arduino</span><span class="tag">Mechatronics</span><span class="tag">Sensors</span><span class="tag">Closed-loop control</span></div>
+      <ul>
+        <li>Designed and built an Arduino-based environmental monitoring and cooling system integrating temperature/humidity sensors, a DC fan, and a display module into a closed-loop control system.</li>
+        <li>Programmed threshold-based automatic fan control so the system regulates temperature without manual intervention; performed iterative hands-on testing and troubleshooting.</li>
+      </ul>
+    </div>
+
+    <div class="project">
+      <div class="meta"><h3>Tensile Test Analysis Tool</h3><span class="date">Jul – Aug 2026</span></div>
+      <div class="tags"><span class="tag">Python</span><span class="tag">NumPy</span><span class="tag">Matplotlib</span><span class="tag">Materials testing</span></div>
+      <ul>
+        <li>Developed a Python tool that automates extraction of elastic modulus, 0.2% offset yield strength, ultimate tensile strength, elongation, and toughness from raw stress–strain data.</li>
+        <li>Implemented adaptive linear regression to identify the elastic region and generated annotated plots marking yield and ultimate-strength points.</li>
+      </ul>
+    </div>
+
+    <div class="project">
+      <div class="meta"><h3>Vehicle Dynamics Analysis</h3><span class="date">Mar – May 2026</span></div>
+      <div class="tags"><span class="tag">MATLAB</span><span class="tag">Data analysis</span><span class="tag">Modeling</span></div>
+      <ul>
+        <li>Built a modular MATLAB program analyzing 5,000+ speed–time data points across 9 vehicle/tire combinations and 45 trials.</li>
+        <li>Estimated acceleration start time, initial/final velocities, and first-order time constants; validated the model using percent error and sum of squared errors.</li>
+      </ul>
+    </div>
+
+    <div class="project">
+      <div class="meta"><h3>CAD Modeling — SolidWorks</h3><span class="date">Jun – Aug 2026</span></div>
+      <div class="tags"><span class="tag">SolidWorks</span><span class="tag">Parametric modeling</span><span class="tag">Assemblies</span></div>
+      <ul>
+        <li>Created parametric 3D models and assemblies of mechanical components, including planetary gear sets, screwdrivers, and robotic arm parts.</li>
+        <li>Applied feature-based modeling, dimensioning, and assembly constraints to produce manufacturable geometry and functional component interfaces.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="sec-head"><span class="sec-num">02</span><h2>Experience</h2></div>
+
+    <div class="row-card">
+      <div class="meta">
+        <div><h3>Team Member</h3><div class="org">Purdue Lunabotics</div></div>
+        <span class="date">Aug 2025 – May 2026</span>
+      </div>
+      <ul>
+        <li>Collaborated with a 6–10 member team to evaluate dust-mitigation concepts for a lunar excavation robot.</li>
+        <li>Participated in mechanical design reviews and presented hardware concepts and trade-offs to the team.</li>
+      </ul>
+    </div>
+
+    <div class="row-card">
+      <div class="meta">
+        <div><h3>Math Tutor</h3><div class="org">Palo Alto High Tower Learning Center</div></div>
+        <span class="date">Jan – May 2025</span>
+      </div>
+      <p>Tutored high school students in mathematics 4–10 hours per week, adapting explanations to individual learning needs.</p>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Skills</h2></div>
+    <div class="skill-groups">
+      <div class="skill-group">
+        <h4>CAD / PLM</h4>
+        <div class="tags">
+          <span class="tag plain">SolidWorks</span>
+          <span class="tag plain">Siemens NX</span>
+          <span class="tag plain">Teamcenter PLM</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Programming &amp; Analysis</h4>
+        <div class="tags">
+          <span class="tag plain">Python (NumPy, Matplotlib)</span>
+          <span class="tag plain">MATLAB</span>
+          <span class="tag plain">Excel</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Hardware &amp; Testing</h4>
+        <div class="tags">
+          <span class="tag plain">Arduino</span>
+          <span class="tag plain">Sensor Integration</span>
+          <span class="tag plain">Mechanical Testing</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="sec-head"><span class="sec-num">04</span><h2>Education</h2></div>
+    <div class="row-card">
+      <div class="meta">
+        <div><h3>Purdue University — B.S., Mechanical Engineering</h3><div class="org">West Lafayette, IN</div></div>
+        <span class="date">Aug 2025 – May 2029</span>
+      </div>
+      <p><strong>GPA: 3.88/4.00.</strong> Relevant coursework: Thermodynamics I, Basic Mechanics I, CAD &amp; Graphical Communication, Differential Equations, Data Science for Mechanical Engineers.</p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="contact-card">
+      <h2>Let's talk hardware.</h2>
+      <p>I'm looking for a Summer 2027 mechanical engineering internship — design, prototyping, testing. My inbox is open.</p>
+      <div class="cta-row" style="justify-content:center">
+        <a class="btn primary" href="mailto:fzhire@gmail.com">fzhire@gmail.com</a>
+        <a class="btn ghost" href="https://www.linkedin.com/in/elena-xu-a91555383" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="mono">Elena Xu · Mechanical Engineering Portfolio · 2026</div>
+  </footer>
+</div>
+
+</body>
+</html>
